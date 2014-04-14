@@ -1,0 +1,48 @@
+<h1>公司讨论群</h1>
+<% Time.zone = 'Beijing' %>
+
+<table>
+  <tr>
+    <th>标题</th>
+    <th>内容</th>
+    <th>发帖时间</th>
+    <th>发帖人</th>
+    <th>回帖数</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @forums.each do |forum| %>
+  <tr>
+    <td>
+      <div style="width:200px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; border:2px solid red; text-align:center"> 
+      <%= forum.title %></div>
+    </td>
+    <td>
+      <div style="width:200px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; border:2px solid red; text-align:center"> <%= forum.fcontent %> </div>
+    </td>
+    <td>
+      <div style="width:200px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; border:2px solid red">
+        <%= forum.createtime %> </div>
+      </td>
+    <td>
+      <div style="width:200px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; border:2px solid red; text-align:center">
+      <%= forum.postuser %> </div>
+    </td>
+    <td>
+      <div style="width:50px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; border:2px solid red; text-align:center">
+      <%= forum.comments.length() %>
+    </div>
+    </td>
+    <td><%= link_to '进入', forum %></td>
+    <% if session[:user_name] == forum.postuser or User.find(session[:user_id]).identity == 'administrater' %>
+      <td><%= link_to '删除', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= button_to '发帖', new_forum_path, method: :get %>

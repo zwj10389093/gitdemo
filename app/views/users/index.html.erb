@@ -1,0 +1,36 @@
+<h1>所有用户</h1>
+
+  <% if notice %>
+  <p id="notice"><%= notice %></p>
+  <% end %>
+
+
+<table>
+  <tr>
+    <th>账号</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= link_to '显示', user %></td>
+    <td><%= link_to '编辑', edit_user_path(user) %></td>
+    <% if user.identity != "administrator" %>
+     <td><%= link_to '删除', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% if User.find(session[:user_id]).identity == "administrator" %>
+        <td>
+          <%= link_to '提升为管理员', updateidentity_user_path(user) %>
+        </td>
+      <% end %>
+    <% end %>
+
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '新建用户', new_user_path %>

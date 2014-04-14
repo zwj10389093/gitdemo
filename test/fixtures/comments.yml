@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  ctime: 2014-03-30 17:23:55
+  message: MyText
+  forum_id: 1
+
+two:
+  name: MyString
+  ctime: 2014-03-30 17:23:55
+  message: MyText
+  forum_id: 1

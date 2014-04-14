@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  eid: MyString
+  name: MyString
+  sex: MyString
+  age: 1
+  marriage: MyString
+  nation: MyString
+  department: MyString
+  birth: MyString
+  workdate: MyString
+  intodepartmentdate: MyString
+  pay: 1
+  remark: MyText
+
+two:
+  eid: MyString
+  name: MyString
+  sex: MyString
+  age: 1
+  marriage: MyString
+  nation: MyString
+  department: MyString
+  birth: MyString
+  workdate: MyString
+  intodepartmentdate: MyString
+  pay: 1
+  remark: MyText

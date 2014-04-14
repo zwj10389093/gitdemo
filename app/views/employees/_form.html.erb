@@ -1,0 +1,72 @@
+<%= form_for(@employee) do |f| %>
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% @employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :员工编号 %><br />
+    <%= f.text_field :eid %>
+  </div>
+  <div class="field">
+    <%= f.label :姓名 %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :性别 %><br />
+    <%= f.text_field :sex %>
+  </div>
+  <div class="field">
+    <%= f.label :年龄 %><br />
+    <%= f.number_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :结婚状况 %><br />
+    <%= f.text_field :marriage %>
+  </div>
+  <div class="field">
+    <%= f.label :种族 %><br />
+    <%= f.text_field :nation %>
+  </div>
+  <div class="field">
+
+    <% type = [] %>
+    <% Department.all.each do |department| %>
+    <% type.push(department.name) %>
+    <% end %>
+
+    <%= f.label :部门 %><br />
+    <%= f.select :bumen, type, prompt: '选择一个部门' %>
+    
+  </div>
+  <div class="field">
+    <%= f.label :出生日期 %><br />
+    <%= f.date_select :nbirth, :start_year => 1920%>
+  </div>
+  <div class="field">
+    <%= f.label :开始工作时间 %><br />
+    <%= f.date_select :nworkdate %>
+  </div>
+  <div class="field">
+    <%= f.label :进入部门时间 %><br />
+    <%= f.date_select :nintodepartmentdate %>
+  </div>
+  <div class="field">
+    <%= f.label :工资 %><br />
+    <%= f.number_field :pay %>
+  </div>
+  <div class="field">
+    <%= f.label :奖惩情况与备注 %><br />
+    <%= f.text_area :remark, rows: 6 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

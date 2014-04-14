@@ -1,0 +1,32 @@
+<h1>Welcome</h1>
+
+<% if session[:user_id] and session[:user_name]%>
+
+	您好！<%= session[:user_name] %>
+<% end %>
+<br>
+
+现在的时间是 <%= Time.now %> 
+<br>
+	公司当前所拥有的员工数为 <%= @total_employees %>
+	<br>员工工资总和为
+	<% a = 0 %>
+	<% Employee.all.each do |employee| %>
+	<% a = a + employee.pay %>
+	<% end %>
+	<%= a %>
+
+<br><br>
+	公司当前所拥有的部门数量为 <%= @total_departments %>
+	<% Department.all.each do |department| %>
+	<br>	<% a = 0 %>
+		<% b = 0 %>
+		<% Employee.all.each do |employee| %>
+			<% if employee.bumen == department.name %>
+				<% a = a + 1 %>
+				<% b = b + employee.pay %>
+			<% end %>
+		<% end %>
+
+		<%= department.name %>拥有<%= a %>个员工，总工资为<%= b %>
+	<% end %>

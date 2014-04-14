@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <b>员工编号:</b>
+  <%= @employee.eid %>
+</p>
+
+<p>
+  <b>姓名:</b>
+  <%= @employee.name %>
+</p>
+
+<p>
+  <b>性别:</b>
+  <%= @employee.sex %>
+</p>
+
+<p>
+  <b>年龄:</b>
+  <%= @employee.age %>
+</p>
+
+<p>
+  <b>结婚状况:</b>
+  <%= @employee.marriage %>
+</p>
+
+<p>
+  <b>种族:</b>
+  <%= @employee.nation %>
+</p>
+
+<p>
+  <b>部门:</b>
+  <%= @employee.bumen %>
+</p>
+
+<p>
+  <b>出生日期:</b>
+  <%= @employee.nbirth %>
+</p>
+
+<p>
+  <b>开始工作时间:</b>
+  <%= @employee.nworkdate %>
+</p>
+
+<p>
+  <b>进入部门时间:</b>
+  <%= @employee.nintodepartmentdate %>
+</p>
+
+<p>
+  <b>工资:</b>
+  <%= @employee.pay %>
+</p>
+
+<p>
+  <b>奖惩情况与备注:</b>
+  <%= @employee.remark %>
+</p>
+
+<% if User.find(session[:user_id]).identity == "administrator" %>
+  <%= link_to '编辑', edit_employee_path(@employee) %> |
+<% end %>
+<%= link_to '返回', employees_path %>

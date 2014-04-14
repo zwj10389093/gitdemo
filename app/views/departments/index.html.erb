@@ -1,0 +1,31 @@
+<div style="color:red"> 
+<%= notice %>
+</div>
+<h1>所有的部门</h1>
+
+<table border="1">
+  <tr>
+    <th>部门名字</th>
+    <th>标注</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @departments.each do |department| %>
+  <tr>
+    <td><%= department.name %></td>
+    <td><%= department.remark %></td>
+    <td><%= link_to '显示', department %></td>
+    <% if User.find(session[:user_id]).identity == "administrator" %>
+      <td><%= link_to '编辑', edit_department_path(department) %></td>
+      <td><%= link_to '删除', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<% if User.find(session[:user_id]).identity == "administrator" %>
+  <%= link_to '创建新部门', new_department_path %>
+<% end %>

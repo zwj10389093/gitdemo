@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>账号:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>编码后的密码:</b>
+  <%= @user.password_digest %>
+</p>
+
+
+<%= link_to '修改', edit_user_path(@user) %> |
+<%= link_to '返回', users_path %>

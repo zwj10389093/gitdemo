@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+<% Time.zone = 'Beijing' %>
+
+
+<p>
+  <b>标题:</b>
+  <%= @forum.title %>
+</p>
+
+<div style="border:2px solid black">
+<p>
+  <b>内容:</b>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @forum.fcontent %>
+</p>
+
+<font style="text-align:right">
+<p>
+  <b>发帖时间:</b>
+  <%= @forum.createtime %>
+</p>
+</font>
+
+<font style="text-align:right">
+<p>
+ <b>发帖人:</b>
+  <%= @forum.postuser %>
+</p>
+</font>
+</div>
+</br>
+
+<% @comments.each do |comment| %>
+	
+<div style="border:2px solid black">
+	<b><%= comment.name %>的回复:</b></br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= comment.message %></br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<font style="text-align:right">
+		<%= comment.ctime %>
+	</font>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<% if session[:user_id] and User.find(session[:user_id]).identity == 'administrator'%>
+		<%= link_to '删除评论', comment, confirm: "确定删除?", method: :delete, 
+	    		    	 style: "color:red" %>
+	<% end %>
+	</br>
+</div>
+</br>
+<% end %>
+
+
+<br/>
+<br/>
+
+<%= render 'commentform' %>
+
+
+
+
+</br>
+</br>
+</br>
+
+<%= link_to '返回', forums_path %>
